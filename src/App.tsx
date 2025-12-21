@@ -1,13 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router';
-import AppLayout from './layout/AppLayout';
-import HomePage from './HomePage/HomePage';
-import SearchPage from './SearchPage/SearchPage';
-import SearchWithKeywordPage from './SearchWithKeywordPage/SearchWithKeywordPage';
-import PlaylistPage from './PlaylistPage/PlaylistPage';
-import PlaylistDetailPage from './PlaylistDetailPage/PlaylistDetailPage';
+import LoadingSpinners from './common/components/LoadingSpinners/LoadingSpinners';
+const AppLayout = React.lazy(() => import('./layout/AppLayout'));
+const HomePage = React.lazy(() => import('./HomePage/HomePage'));
+const SearchPage = React.lazy(() => import('./SearchPage/SearchPage'));
+const SearchWithKeywordPage = React.lazy(() => import('./SearchWithKeywordPage/SearchWithKeywordPage'));
+// const PlaylistPage = React.lazy(() => import('./PlaylistPage/PlaylistPage'));
+const PlaylistDetailPage = React.lazy(() => import('./PlaylistDetailPage/PlaylistDetailPage'));
 
 // 0. 사이드바 (플레이리스트, 메뉴)
 // 1. 홈페이지 /
@@ -17,15 +17,17 @@ import PlaylistDetailPage from './PlaylistDetailPage/PlaylistDetailPage';
 // 5. 플레이리스트 상세 페이지 /playlist/:id
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<AppLayout />} >
-                <Route index element={<HomePage />} />
-                <Route path="search" element={<SearchPage />} />
-                <Route path="search/:keyword" element={<SearchWithKeywordPage />} />
-                {/* <Route path="playlist" element={<PlaylistPage />} /> */}
-                <Route path="playlist/:id" element={<PlaylistDetailPage />} />
-            </Route>
-        </Routes>
+        <Suspense fallback={<LoadingSpinners />}>
+            <Routes>
+                <Route path="/" element={<AppLayout />} >
+                    <Route index element={<HomePage />} />
+                    <Route path="search" element={<SearchPage />} />
+                    <Route path="search/:keyword" element={<SearchWithKeywordPage />} />
+                    {/* <Route path="playlist" element={<PlaylistPage />} /> */}
+                    <Route path="playlist/:id" element={<PlaylistDetailPage />} />
+                </Route>
+            </Routes>
+        </Suspense>
     );
 }
 
