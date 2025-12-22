@@ -1,11 +1,88 @@
-import React from 'react'
-import { Outlet } from 'react-router'
+import React from "react";
+import { Outlet, NavLink } from 'react-router'
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import HomeFilledIcon from '@mui/icons-material/HomeFilled';
+import SearchIcon from '@mui/icons-material/Search';
+
+const Layout = styled("div")({
+    display: "flex",
+    height: "100vh",
+    padding: "8px",
+});
+
+const Sidebar = styled("div")(
+    ({ theme }) => ({
+        width: "331px",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        [theme.breakpoints.down("sm")]: {
+            display: "none",
+        },
+    })
+);
+
+const ContentBox = styled(Box)(
+    ({ theme }) => ({
+        borderRadius: "8px",
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
+        width: "100%",
+        padding: "8px",
+        marginBottom: "8px",
+        marginRight: "8px",
+    })
+);
+
+const NavList = styled("div")({
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+});
+
+const StyledNavLink = styled(NavLink)(
+    ({ theme }) => ({
+        textDecoration: "none",
+        display: "flex",
+        alignItems: "center",
+        gap: "20px",
+        color: theme.palette.text.secondary,
+        "&:hover": {
+            color: theme.palette.text.primary,
+        },
+        "&.active": {
+            color: theme.palette.text.primary,
+        },
+    })
+);
+
 const AppLayout = () => {
     return (
-        <div>
-            Sidebar
+        <Layout>
+            <Sidebar>
+                <ContentBox>
+                    <NavList>
+                        <StyledNavLink to="/">
+                            <HomeFilledIcon />
+                            <Typography variant="h6" fontWeight={700}>
+                                Home
+                            </Typography>
+                        </StyledNavLink>
+                        <StyledNavLink to="/search">
+                            <SearchIcon />
+                            <Typography variant="h6" fontWeight={700}>
+                                Search
+                            </Typography>
+                        </StyledNavLink>
+                    </NavList>
+                </ContentBox>
+                <ContentBox>
+                    {/* Your Library */}
+                </ContentBox>
+            </Sidebar>
             <Outlet />
-        </div>
+        </Layout>
     )
 }
 
