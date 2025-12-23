@@ -6,18 +6,26 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from './../theme';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { queryClient } from './queryClient';
+// import { QueryClient } from '@tanstack/react-query';
+// const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById('content') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+       <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
