@@ -4,8 +4,8 @@ import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import HomeFilledIcon from '@mui/icons-material/HomeFilled';
 import SearchIcon from '@mui/icons-material/Search';
-import LibraryHead from "../common/components/LibraryHead";
-import Library from "../common/components/Library";
+import LibraryHead from "./components/LibraryHead";
+import Library from "./components/Library";
 
 const Layout = styled("div")({
     display: "flex",
