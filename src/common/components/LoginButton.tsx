@@ -6,7 +6,7 @@ type Props = {}
 const LoginButton = (props: Props) => {
     return (
         <Button variant="contained" color="secondary" size="large">
-            로그인
+            Login
         </Button>
     )
 }

@@ -6,12 +6,13 @@ import HomeFilledIcon from '@mui/icons-material/HomeFilled';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryHead from "./components/LibraryHead";
 import Library from "./components/Library";
-import NavBar from "../common/NavBar";
+import NavBar from "./components/NavBar";
 
 const Layout = styled("div")({
     display: "flex",
     height: "100vh",
     padding: "8px",
+    gap: "8px",
 });
 
 const Sidebar = styled("div")(
@@ -20,6 +21,7 @@ const Sidebar = styled("div")(
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        gap: "8px",
         [theme.breakpoints.down("sm")]: {
             display: "none",
         },
@@ -28,13 +30,11 @@ const Sidebar = styled("div")(
 
 const ContentBox = styled(Box)(
     ({ theme }) => ({
+        width: "100%",
+        padding: "8px",
         borderRadius: "8px",
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
-        width: "100%",
-        padding: "8px",
-        marginBottom: "8px",
-        marginRight: "8px",
     })
 );
 
