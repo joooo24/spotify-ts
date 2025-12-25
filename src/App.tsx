@@ -3,11 +3,11 @@ import './App.css';
 import { Routes, Route } from 'react-router';
 import LoadingSpinners from './common/components/LoadingSpinners/LoadingSpinners';
 const AppLayout = React.lazy(() => import('./layout/AppLayout'));
-const HomePage = React.lazy(() => import('./HomePage/HomePage'));
-const SearchPage = React.lazy(() => import('./SearchPage/SearchPage'));
-const SearchWithKeywordPage = React.lazy(() => import('./SearchWithKeywordPage/SearchWithKeywordPage'));
+const HomePage = React.lazy(() => import('./pages/HomePage/HomePage'));
+const SearchPage = React.lazy(() => import('./pages/SearchPage/SearchPage'));
+const SearchWithKeywordPage = React.lazy(() => import('./pages/SearchWithKeywordPage/SearchWithKeywordPage'));
 // const PlaylistPage = React.lazy(() => import('./PlaylistPage/PlaylistPage'));
-const PlaylistDetailPage = React.lazy(() => import('./PlaylistDetailPage/PlaylistDetailPage'));
+const PlaylistDetailPage = React.lazy(() => import('./pages/PlaylistDetailPage/PlaylistDetailPage'));
 
 // 0. 사이드바 (플레이리스트, 메뉴)
 // 1. 홈페이지 /
