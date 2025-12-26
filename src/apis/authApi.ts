@@ -3,7 +3,14 @@ import { ClientCredentialTokenResponse } from "../models/auth";
 import { ClientID, ClientSecret } from "../configs/authConfig";
 
 const encodedBase64 = (data: string): string => {
-    return Buffer.from(data).toString("base64");
+    // return Buffer.from(data).toString("base64");
+    if (typeof window === "undefined") {
+        // Node.js environment
+        return Buffer.from(data).toString("base64");
+    } else {
+        // Browser environment
+        return btoa(data);
+    }
 };
 
 export const getClientCredentialToken = async (): Promise<ClientCredentialTokenResponse> => {
@@ -17,7 +24,7 @@ export const getClientCredentialToken = async (): Promise<ClientCredentialTokenR
             },
         });
 
-        return response.data.access_token;
+        return response.data;
     } catch (error) {
         throw new Error("Failed to fetch client credential token");
     }
