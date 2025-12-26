@@ -1,4 +1,3 @@
-
 import { styled } from "@mui/material";
 import React from "react";
 
@@ -17,7 +16,6 @@ const PlayButtonContainer = styled("button")(({ theme }) => ({
         outline: "none",
     },
 }));
-
 const PlayButton: React.FC = () => {
     return (
         <PlayButtonContainer>
@@ -35,3 +33,4 @@ const PlayButton: React.FC = () => {
 };
 
 export default PlayButton;
+
