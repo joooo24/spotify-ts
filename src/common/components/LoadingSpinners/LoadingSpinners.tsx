@@ -3,7 +3,7 @@ import './LoadingSpinners.css'
 
 type Props = {}
 
-const LoadingSppiners = (props: Props) => {
+const LoadingSpinners = (props: Props) => {
     return (
         <div className="lds-facebook">
             <div></div>
@@ -13,4 +13,4 @@ const LoadingSppiners = (props: Props) => {
     )
 }
 
-export default LoadingSppiners;
+export default LoadingSpinners;
