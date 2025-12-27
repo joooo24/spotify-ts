@@ -5,12 +5,12 @@ import { getSpotifyAuthUrl } from '../../utils/auth';
 type Props = {}
 
 const LoginButton = (props: Props) => {
-    const login = () => {
-        console.log("login");
+    const handleLogin = () => {
         getSpotifyAuthUrl();
     }
+    
     return (
-        <Button variant="contained" color="secondary" size="large" onClick={login}>
+        <Button variant="contained" color="secondary" size="large" onClick={handleLogin}>
             Login
         </Button>
     )
