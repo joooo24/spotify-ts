@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ClientCredentialTokenResponse } from "../models/auth";
-import { ClientID, ClientSecret } from "../configs/authConfig";
+import { CLIENT_ID, CLIENT_SECRET } from "../configs/authConfig";
 
 const encodedBase64 = (data: string): string => {
     // return Buffer.from(data).toString("base64");
@@ -20,7 +20,7 @@ export const getClientCredentialToken = async (): Promise<ClientCredentialTokenR
         const response = await axios.post("https://accounts.spotify.com/api/token", body, {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-                Authorization: "Basic " + encodedBase64(`${ClientID}:${ClientSecret}`),
+                Authorization: "Basic " + encodedBase64(`${CLIENT_ID}:${CLIENT_SECRET}`),
             },
         });
 
