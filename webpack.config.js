@@ -67,6 +67,7 @@ module.exports = (env, argv) => {
         },
         devtool: isProduction ? "source-map" : "inline-source-map",
         devServer: {
+            host: "0.0.0.0",
             port: 3001,
             open: true,
             hot: true,
