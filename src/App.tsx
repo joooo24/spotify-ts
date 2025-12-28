@@ -28,17 +28,7 @@ function App() {
 
     useEffect(() => {
         if (code && codeVerifier) {
-            exchangeToken({ code, codeVerifier },
-                {
-                    onSuccess: () => {
-                        window.location.href = '/';
-                    },
-                    onError: (error) => {
-                        console.error('토큰 교환 실패:', error);
-                        window.location.href = '/';
-                    },
-                }
-            );
+            exchangeToken({ code, codeVerifier });
         }
     }, [code, codeVerifier, exchangeToken]);
 
@@ -46,13 +36,11 @@ function App() {
         <Suspense fallback={<LoadingSpinners />}>
             <Routes>
                 <Route path="/" element={<AppLayout />} >
-                    <Route index element={<HomePage />} />
+                    <Route path="/" index element={<HomePage />} />
                     <Route path="search" element={<SearchPage />} />
                     <Route path="search/:keyword" element={<SearchWithKeywordPage />} />
                     {/* <Route path="playlist" element={<PlaylistPage />} /> */}
                     <Route path="playlist/:id" element={<PlaylistDetailPage />} />
-                    {/* Spotify 로그인 callback 처리 - AppLayout 안에 포함 */}
-                    <Route path="callback" element={<HomePage />} />
                 </Route>
             </Routes>
         </Suspense>
