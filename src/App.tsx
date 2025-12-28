@@ -10,6 +10,7 @@ const SearchPage = React.lazy(() => import('./pages/SearchPage/SearchPage'));
 const SearchWithKeywordPage = React.lazy(() => import('./pages/SearchWithKeywordPage/SearchWithKeywordPage'));
 // const PlaylistPage = React.lazy(() => import('./PlaylistPage/PlaylistPage'));
 const PlaylistDetailPage = React.lazy(() => import('./pages/PlaylistDetailPage/PlaylistDetailPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 // 0. 사이드바 (플레이리스트, 메뉴)
 // 1. 홈페이지 /
@@ -36,13 +37,14 @@ function App() {
         <Suspense fallback={<LoadingSpinners />}>
             <Routes>
                 <Route path="/" element={<AppLayout />} >
-                    <Route path="/" index element={<HomePage />} />
+                    <Route index element={<HomePage />} />
                     <Route path="callback" element={<HomePage />} />
                     <Route path="search" element={<SearchPage />} />
                     <Route path="search/:keyword" element={<SearchWithKeywordPage />} />
                     {/* <Route path="playlist" element={<PlaylistPage />} /> */}
                     <Route path="playlist/:id" element={<PlaylistDetailPage />} />
                 </Route>
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </Suspense>
     );
