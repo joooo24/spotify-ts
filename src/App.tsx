@@ -42,6 +42,8 @@ function App() {
                     {/* <Route path="playlist" element={<PlaylistPage />} /> */}
                     <Route path="playlist/:id" element={<PlaylistDetailPage />} />
                 </Route>
+                {/* callback 라우트 추가 */}
+                <Route path="callback" element={<HomePage />} />
             </Routes>
         </Suspense>
     );
