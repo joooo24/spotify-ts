@@ -1,42 +1,48 @@
-import { Box, Button, styled } from '@mui/material';
+import { Avatar, Box, IconButton, Menu, MenuItem, styled, } from "@mui/material";
 import LoginButton from '../../common/components/LoginButton';
 import useGetCurrentUserProfile from '../../hooks/useGetCurrentUserProfile';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState } from 'react';
 
 const NavBar = () => {
-    const [showSignOut, setShowSignOut] = useState<boolean>(false);
-
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const { data: userProfile } = useGetCurrentUserProfile();
 
-    const handleShowSignOut = () => {
-        setShowSignOut(!showSignOut);
+    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
     };
 
-    const handleSignOut = () => {
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+    const logout = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
-        setShowSignOut(false);
+        handleMenuClose();
         window.location.href = '/';
     };
 
     return (
         <Container>
             {userProfile ? (
-                <Profile onClick={handleShowSignOut}>
-                    {userProfile.images[0]?.url ? (
-                        <img src={userProfile.images[0]?.url} alt={userProfile.display_name || 'Profile'} />
-                    ) : (
-                        <AccountCircleIcon />
-                    )}
-                </Profile>
+                <ProfileContainer>
+                    <IconButton onClick={handleMenuOpen} size="small">
+                        <Avatar
+                            src={userProfile.images[0]?.url}
+                            alt={userProfile.display_name || 'Profile'}
+                        />
+                    </IconButton>
+                    <ProfileMenu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                        keepMounted
+                    >
+                        <ProfileMenuItem onClick={logout}>Log out</ProfileMenuItem>
+                    </ProfileMenu>
+                </ProfileContainer>
             ) : (
                 <LoginButton />
-            )}
-            {showSignOut && (
-                <SignOutButton size="large" onClick={handleSignOut}>
-                    Sign out
-                </SignOutButton>
             )}
         </Container>
     );
@@ -50,29 +56,24 @@ const Container = styled(Box)({
     justifyContent: 'flex-end',
     height: '64px',
     paddingRight: '8px',
-    position: 'relative',
 });
 
-const Profile = styled(Box)({
-    width: '44px',
-    height: '44px',
-    cursor: 'pointer',
+const ProfileContainer = styled("div")({
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+    borderRadius: "8px",
+});
 
-    '& img': {
-        width: '100%',
-        height: '100%',
-        display: 'block',
-        borderRadius: '50%',
-    },
-    '& svg': {
-        width: '100%',
-        height: '100%',
+const ProfileMenu = styled(Menu)({
+    "& .MuiPaper-root": {
+        color: "white",
+        minWidth: "160px",
     },
 });
 
-const SignOutButton = styled(Button)(({ theme }) => ({
-    position: 'absolute',
-    right: '68px',
-    background: theme.palette.background.default,
-    color: theme.palette.text.primary,
-}));
+const ProfileMenuItem = styled(MenuItem)({
+    "&:hover": {
+        backgroundColor: "#444",
+    },
+});
