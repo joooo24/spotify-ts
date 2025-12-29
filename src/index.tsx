@@ -15,17 +15,18 @@ import { queryClient } from './queryClient';
 const root = ReactDOM.createRoot(
   document.getElementById('content') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <QueryClientProvider client={queryClient}>
           <App />
-        </ThemeProvider>
-      </BrowserRouter>
-       <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
