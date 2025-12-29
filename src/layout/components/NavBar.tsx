@@ -2,6 +2,7 @@ import { Avatar, Box, IconButton, Menu, MenuItem, styled, } from "@mui/material"
 import LoginButton from '../../common/components/LoginButton';
 import useGetCurrentUserProfile from '../../hooks/useGetCurrentUserProfile';
 import { useState } from 'react';
+import PersonIcon from '@mui/icons-material/Person';
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -19,7 +20,7 @@ const NavBar = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         handleMenuClose();
-        window.location.href = '/';
+        window.location.reload();
     };
 
     return (
@@ -27,10 +28,16 @@ const NavBar = () => {
             {userProfile ? (
                 <ProfileContainer>
                     <IconButton onClick={handleMenuOpen} size="small">
-                        <Avatar
-                            src={userProfile.images[0]?.url}
-                            alt={userProfile.display_name || 'Profile'}
-                        />
+                        {userProfile.images?.[0]?.url ? (
+                            <Avatar
+                                src={userProfile.images[0].url}
+                                alt={userProfile.display_name || 'Profile'}
+                            />
+                        ) : (
+                            <Avatar>
+                                <PersonIcon />
+                            </Avatar>
+                        )}
                     </IconButton>
                     <ProfileMenu
                         anchorEl={anchorEl}
