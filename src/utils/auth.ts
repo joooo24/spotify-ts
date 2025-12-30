@@ -10,7 +10,7 @@ export const getSpotifyAuthUrl = async () => {
     const clientId = CLIENT_ID;
     const redirectUri = REDIRECT_URI;
 
-    const scope = "user-read-private user-read-email";
+    const scope = "user-read-private user-read-email playlist-read-private";
     const authUrl = new URL("https://accounts.spotify.com/authorize");
 
     // generated in the previous step
