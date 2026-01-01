@@ -3,9 +3,9 @@ export interface ExternalUrls {
 }
 
 export interface Image {
-    height: number;
     url: string;
-    width: number;
+    height: number | null;
+    width: number | null;
 }
 
 export interface Restriction {
@@ -13,22 +13,20 @@ export interface Restriction {
 }
 
 export interface Followers {
-    href: string | undefined;
-    total: number;
+    href?: string | null;
+    total?: number;
 }
 
 export interface ExplicitContent {
-    filter_enabled: boolean;
-    filter_locked: boolean;
+    filter_enabled?: boolean;
+    filter_locked?: boolean;
 }
 
 export interface Owner {
-    display_name?: string;
     external_urls?: ExternalUrls;
-    followers?: Followers;
     href?: string;
     id?: string;
-    images?: Image[];
     type?: string;
     uri?: string;
+    display_name?: string | null;
 }
