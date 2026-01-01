@@ -1,10 +1,9 @@
-import type { GetCurrentUserPlaylistRequest, GetCurrentUserPlaylistResponse } from "../models/playlist";
+import type { GetCurrentUserPlaylistRequest, GetCurrentUserPlaylistResponse, GetPlaylistRequest, Playlist } from "../models/playlist";
 import api from "../utils/api";
 
-// 현재 로그인한 사용자의 플레이리스트 목록 가져오기
 export const getCurrentUserPlaylists = async ({
-    limit,  // 한 번에 가져올 플레이리스트 개수
-    offset, // 시작 위치 (페이지네이션용)
+    limit,
+    offset,
 }: GetCurrentUserPlaylistRequest): Promise<GetCurrentUserPlaylistResponse> => {
     try {
         const response = await api.get("/me/playlists", {
@@ -12,6 +11,21 @@ export const getCurrentUserPlaylists = async ({
         });
         return response.data;
     } catch (error) {
-        throw new Error("fail to fetch current user playlists");
+        console.log("Fetch Current User Playlists Error", error);
+        throw new Error("Fail to fetch Current User Playlists.");
+    }
+};
+
+export const getPlaylist = async (
+    params: GetPlaylistRequest
+): Promise<Playlist> => {
+    try {
+        const response = await api.get(`/playlists/${params.playlist_id}`, {
+            params,
+        });
+        return response.data;
+    } catch (error) {
+        console.log("Fetch Playlists Error", error);
+        throw new Error("Fail to fetch Playlists.");
     }
 };
