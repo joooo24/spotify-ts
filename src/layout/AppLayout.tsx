@@ -13,6 +13,7 @@ const Layout = styled("div")({
     height: "100vh",
     padding: "8px",
     gap: "8px",
+    overflow: "hidden",
 });
 
 const Sidebar = styled("div")(
@@ -37,6 +38,14 @@ const ContentBox = styled(Box)(
         color: theme.palette.text.primary,
     })
 );
+
+const LibraryContainer = styled(ContentBox)({
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+    minHeight: 0,
+    height: "100%",
+});
 
 const NavList = styled("div")({
     display: "flex",
@@ -80,10 +89,10 @@ const AppLayout = () => {
                         </StyledNavLink>
                     </NavList>
                 </ContentBox>
-                <ContentBox height="100%">
+                <LibraryContainer>
                     <LibraryHead />
                     <Library />
-                </ContentBox>
+                </LibraryContainer>
             </Sidebar>
             <ContentBox height="100%">
                 <NavBar />
