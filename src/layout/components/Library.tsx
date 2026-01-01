@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { styled } from '@mui/system';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router';
-import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import useGetCurrentUserPlaylists from '../../hooks/useGetCurrentUserPlaylists';
 import useGetCurrentUserProfile from '../../hooks/useGetCurrentUserProfile';
 import EmptyPlaylist from './EmptyPlaylist';
@@ -42,7 +42,7 @@ const Library = () => {
                                     {playlist.images?.[0]?.url ? (
                                         <PlaylistImage src={playlist.images[0].url} alt={playlist.name || "Playlist"} />
                                     ) : (
-                                        <ImageNotSupportedIcon sx={{ fontSize: '60px' }} />
+                                        <MusicNoteIcon sx={{ fontSize: '60px' }} />
                                     )}
                                     <PlaylistInfo>
                                         <h4>{playlist.name}</h4>

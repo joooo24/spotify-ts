@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { Box, Typography, styled, type BoxProps } from "@mui/material";
+import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import useGetPlaylist from "../../hooks/useGetPlaylist";
 import LoadingSpinners from "../../common/components/LoadingSpinners/LoadingSpinners";
 import ErrorMessage from "../../common/components/ErrorMessage";
@@ -28,7 +29,7 @@ const PlaylistDetailPage = () => {
                 <PlaylistImage component="img" src={playlist.images[0].url} alt={playlist.name || "Playlist"} />
             ) : (
                 <PlaylistImagePlaceholder>
-                    <Typography variant="h2">🎵</Typography>
+                    <MusicNoteIcon sx={{ fontSize: '80px' }} />
                 </PlaylistImagePlaceholder>
             )}
 
